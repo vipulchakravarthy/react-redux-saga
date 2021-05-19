@@ -1,7 +1,8 @@
-import { takeEvery, call } from "redux-saga/effects";
+import { takeEvery, call, put } from "redux-saga/effects";
 import { types } from '../types';
 
 import axios from 'axios';
+import { fetchDataFailure, fetchDataSuccess } from '../actions';
 
 function* asyncFetchRequest(action) {
     try {
@@ -11,8 +12,10 @@ function* asyncFetchRequest(action) {
             return axios.get(url)
         })
         console.log(response)
+        yield put(fetchDataSuccess(response.data.data.first_name))
     } catch (err) {
         console.log(err);
+        yield put(fetchDataFailure(err))
     }
 }
 

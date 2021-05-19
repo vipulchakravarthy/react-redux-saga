@@ -12,10 +12,15 @@ class App extends Component {
   }
 
   render() {
+
     return (
       <div>
         <button onClick={this.handleFetchData}
           className="btn btn-primary">Fetch</button>
+        <div>
+          {/* {this.props.user} */}
+          {Object.keys(this.props.user).length > 0 && <div>{this.props.user}</div>}
+        </div>
       </div>
     )
   }
